@@ -8,6 +8,21 @@ use Auth;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $search = Input::get('search');
+        $order_by = Input::get('order_by');
+        $sort_by = Input::get('sort_by');
+        $rowsPerPage = Input::get('rowsPerPage');
+        $page = Input::get('page');
+
+            $products = Product::orWhere('name', 'like', '%' . $search . '%')
+                        ->orWhere('status', 'like', '%' . $search . '%')
+                        ->with('brand', 'category');
+            
+
+        return $products->orderBy($order_by, $sort_by)->paginate($rowsPerPage);
+    }
     public function store(Request $request)
     {
         $product = new Product;
@@ -24,7 +39,7 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->save();
 
-        return $product;
+        return Product::where('id', $product->id)->with('brand', 'category')->first();
     }
 
     public function update(Request $request, $id)
@@ -43,7 +58,7 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->save();
 
-        return $product;
+        return Product::where('id', $product->id)->with('brand', 'category')->first();
     }
 
     public function destroy($id)
