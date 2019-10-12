@@ -19,24 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Auth\AuthController@login')->name('login');
 
+Route::post('/account/store', 'AccountController@store');
 
     Route::group(['middleware' => 'auth:api'], function ($router) {
         //Logout
         Route::post('/logout', 'Auth\AuthController@logout');
-        //Brand Management Routes
-        Route::get('/brand/index', 'BrandController@index');
-        Route::post('/brand/create', 'BrandController@store');
-        Route::put('/brand/update/{id}', 'BrandController@update');
-        Route::delete('/brand/delete/{id}', 'BrandController@destroy');
 
-        //Brand Management Routes
-        Route::get('/category/index', 'CategoryController@index');
-        Route::post('/category/create', 'CategoryController@store');
-        Route::put('/category/update/{id}', 'CategoryController@update');
-        Route::delete('/category/delete/{id}', 'CategoryController@destroy');
-
-        //Producy Management
-        Route::post('/product/create', 'ProductController@store');
-        Route::put('/product/update/{id}', 'ProductController@update');
-        Route::delete('/product/delete/{id}', 'ProductController@destroy');
     });
