@@ -40,6 +40,7 @@ class VehicleController extends Controller
         $appointment->user_id = $user_id;
         $appointment->vehicle_id = $vehicle->id;
         $appointment->qr_code = $appointment_code;
+        $appointment->clearance_description_id = $clearance->id;
         //$appointment->plate_number = $vehicle->plate_number;
         $appointment->save();
 
