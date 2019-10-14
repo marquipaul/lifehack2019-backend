@@ -18,7 +18,7 @@ class CreateClearanceDescriptionsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('vehicle_id')->nullable();
             $table->integer('processed_by')->nullable();
-            $table->string('op_number');
+            //$table->string('op_number');
             $table->string('purpose');
             $table->enum('permit_to_assemble', ['false', 'true']);
             $table->enum('record_check', ['false', 'true']);

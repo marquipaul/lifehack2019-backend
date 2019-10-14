@@ -43,7 +43,7 @@ class VehicleController extends Controller
         $clearance = new ClearanceDescription;
         $clearance->user_id = $user_id;
         $clearance->vehicle_id = $vehicle->id;
-        $clearance->op_number = $request->op_number;
+        //$clearance->op_number = $request->op_number;
         $clearance->purpose = $request->purpose;
         $clearance->permit_to_assemble = $request->permit_to_assemble;
         $clearance->record_check = $request->record_check;
