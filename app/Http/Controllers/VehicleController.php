@@ -17,6 +17,11 @@ use PDF;
 
 class VehicleController extends Controller
 {
+    public function getVehicles()
+    {
+        return Vehicle::where('user_id', Auth::user()->id)->get();
+    }
+
     public function clearance_pdf()
     {
         // Fetch order data from database
