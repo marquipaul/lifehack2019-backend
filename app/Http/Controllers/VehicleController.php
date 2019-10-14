@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreVehicleRequest;
 use Auth;
 use Carbon;
+use PDF;
 
 class VehicleController extends Controller
 {
+    public function clearance_pdf()
+    {
+        // Fetch order data from database
+        //$data = Appointment::where('id', $id)->with('user', 'vehicle')->first();
+        $pdf = PDF::loadView('pdf.clearance');
+        return $pdf->stream('clearance.pdf');
+    }
+
     public function storeClearance(Request $request, $vehicle_id, $user_id)
     {
         if($request->hasFile('requirements')){
