@@ -36,6 +36,7 @@ class MobileController extends Controller
     {
        $update = Appointment::where('qr_code', $code)->first();       
        $update->processed_by = Auth::user()->id;
+       $update->scanned_at = Carbon\Carbon::now();
        $update->save();
 
         $appointment = Appointment::where('qr_code', $code)->with('vehicle', 'user', 'clearance')->first();

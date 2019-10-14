@@ -22,11 +22,11 @@ class VehicleController extends Controller
         return Vehicle::where('user_id', Auth::user()->id)->get();
     }
 
-    public function clearance_pdf()
+    public function clearance_pdf($id)
     {
         // Fetch order data from database
-        //$data = Appointment::where('id', $id)->with('user', 'vehicle')->first();
-        $pdf = PDF::loadView('pdf.clearance');
+        $data = Appointment::where('id', $id)->with('user', 'vehicle', 'clearance')->first();
+        $pdf = PDF::loadView('pdf.clearance', $data)->setPaper('a4');;
         return $pdf->stream('clearance.pdf');
     }
 

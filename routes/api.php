@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Auth\AuthController@login')->name('login');
 
-Route::get('/application/pdf', 'VehicleController@clearance_pdf');
+Route::get('/application/pdf/{id}', 'VehicleController@clearance_pdf');
 
 Route::post('/account/store', 'AccountController@store');
 
