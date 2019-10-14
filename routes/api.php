@@ -36,4 +36,7 @@ Route::post('/account/store', 'AccountController@store');
         Route::get('/vehicle/owned', 'VehicleController@getVehicles');
         Route::post('/vehicle/store/online', 'VehicleController@storeOnline');
         Route::post('/vehicle/store/clearance/{vehicle_id}/{user_id}', 'VehicleController@storeClearance');
+
+        //Appointment
+        Route::get('/appointment/index', 'AppointmentController@getAppointments');
     });

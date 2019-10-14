@@ -9,6 +9,7 @@ use App\Appointment;
 use App\ClearanceDescription;
 use App\Events\ScanApplicationEvent;
 use Auth;
+use Carbon;
 
 class MobileController extends Controller
 {
