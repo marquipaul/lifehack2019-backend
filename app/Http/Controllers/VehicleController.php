@@ -18,6 +18,26 @@ class VehicleController extends Controller
 {
     public function storeClearance(Request $request, $vehicle_id, $user_id)
     {
+        if($request->hasFile('requirements')){
+            //Get filename with the extension
+            $filenameWithExt = $request->file('requirements')->getClientOriginalName();
+            //Generate Random string
+            $randomString = Str::random(20);
+            //Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //Get just ext
+            $extension = $request->file('requirements')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = $filename.'_'.time().'_'.$randomString.'.'.$extension; 
+            //full_image link
+            $filenameURL = 'https://pnp-automation-bucket.s3-ap-southeast-1.amazonaws.com/media/'. $fileNameToStore;
+            //Upload Image to s3
+            Storage::disk('s3')->put('media/'.$fileNameToStore , fopen($request->file('requirements'), 'r+'), 'public');
+
+        } else {
+            $filenameURL = null;
+        }
+
         $vehicle = Vehicle::find($vehicle_id);
 
         $clearance = new ClearanceDescription;
@@ -29,6 +49,8 @@ class VehicleController extends Controller
         $clearance->record_check = $request->record_check;
         $clearance->status = 'payment on process';
         $clearance->application_status = 'walk_in';
+        $clearance->requirements = $fileNameToStore;
+        $clearance->requirements_url = $filenameURL;
         $clearance->save();
 
         $date = Carbon\Carbon::now()->toDateString();
@@ -64,16 +86,16 @@ class VehicleController extends Controller
         $vehicle->plate_number = $request->plate_number;
         $vehicle->body_type = $request->body_type;
         $vehicle->make = $request->make;
-        $vehicle->series = $request->series;
+        //$vehicle->series = $request->series;
         $vehicle->year_model = $request->year_model;
         $vehicle->color = $request->color;
         $vehicle->engine_number = $request->engine_number;
         $vehicle->chassis_number = $request->chassis_number;
-        $vehicle->me_control_number = $request->me_control_number;
-        $vehicle->classification = $request->classification;
+        //$vehicle->me_control_number = $request->me_control_number;
+        //$vehicle->classification = $request->classification;
         $vehicle->lto_cc_number = $request->lto_cc_number;
-        $vehicle->mv_file_number = $request->mv_file_number;
-        $vehicle->mvrr_number = $request->mvrr_number;
+        //$vehicle->mv_file_number = $request->mv_file_number;
+        $vehicle->or_number = $request->or_number;
         $vehicle->cr_number = $request->cr_number;
         $vehicle->application_status = 'online';
         $vehicle->status = 'payment on process';
@@ -97,16 +119,16 @@ class VehicleController extends Controller
         $vehicle->plate_number = $request->plate_number;
         $vehicle->body_type = $request->body_type;
         $vehicle->make = $request->make;
-        $vehicle->series = $request->series;
+        //$vehicle->series = $request->series;
         $vehicle->year_model = $request->year_model;
         $vehicle->color = $request->color;
         $vehicle->engine_number = $request->engine_number;
         $vehicle->chassis_number = $request->chassis_number;
-        $vehicle->me_control_number = $request->me_control_number;
-        $vehicle->classification = $request->classification;
+        //$vehicle->me_control_number = $request->me_control_number;
+        //$vehicle->classification = $request->classification;
         $vehicle->lto_cc_number = $request->lto_cc_number;
-        $vehicle->mv_file_number = $request->mv_file_number;
-        $vehicle->mvrr_number = $request->mvrr_number;
+        //$vehicle->mv_file_number = $request->mv_file_number;
+        $vehicle->or_number = $request->or_number;
         $vehicle->cr_number = $request->cr_number;
         $vehicle->application_status = 'walk_in';
         $vehicle->status = 'payment on proccess';
