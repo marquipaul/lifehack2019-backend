@@ -7,10 +7,11 @@ use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Carbon;
+use App\Http\Requests\RegisterAccountRequest;
 
 class AccountController extends Controller
 {
-    public function store(Request $request)
+    public function store(RegisterAccountRequest $request)
     {
         $date = Carbon\Carbon::now()->toDateString();
         $time = Carbon\Carbon::now()->toTimeString();
@@ -27,8 +28,6 @@ class AccountController extends Controller
         $user->user_type = 'applicant';
         $user->mobile_number = $request->mobile_number;
         $user->birthday = $request->birthday;
-        $user->classification = $request->classification;
-        $user->avatar = $request->avatar;
         $user->address = $request->address;
         $user->tin_number = $request->tin_number;
         $user->password = Hash::make($request->password);

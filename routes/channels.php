@@ -14,3 +14,7 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('application.{appointmentId}', function ($user, $appointmentId) {
+    return $user->id === Appointment::findOrNew($appointmentId)->user_id;
+});

@@ -25,4 +25,12 @@ Route::post('/account/store', 'AccountController@store');
         //Logout
         Route::post('/logout', 'Auth\AuthController@logout');
 
+        //Mobile
+        Route::get('/mobile/index', 'MobileController@index');
+        Route::get('/mobile/scan/vehicle/{code}', 'MobileController@scanVehicle');
+        Route::get('/mobile/scan/application/{code}', 'MobileController@scanOnlineApplication');
+
+        //Online
+        Route::post('/vehicle/store/online', 'VehicleController@storeOnline');
+        Route::post('/vehicle/store/clearance/{vehicle_id}/{user_id}', 'VehicleController@storeClearance');
     });
