@@ -21,7 +21,9 @@ class MobileController extends Controller
                 $vehicles->orWhere('plate_number', 'like', '%' . $search . '%');
             }
 
-        return $vehicles->get();
+        return response()->json([
+            'responseData' => $vehicles->get(),
+        ], 200);
     }
 
     public function scanVehicle($code)
