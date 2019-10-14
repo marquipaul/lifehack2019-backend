@@ -34,7 +34,7 @@ class StoreVehicleRequest extends FormRequest
             'lto_cc_number' => 'required',
             'or_number' => 'required',
             'cr_number' => 'required',
-            'requirements' => 'required',
+            //'requirements' => 'required',
         ];
     }
 }
