@@ -7,7 +7,7 @@ use App\Appointment;
 
 class AppointmentController extends Controller
 {
-    public function getAppointments(Type $var = null)
+    public function getAppointments()
     {
         $myAppointment = Appointment::where('processed_by', Auth::user()->id)
                             ->where('scanned_at', '!=', null)->get();
