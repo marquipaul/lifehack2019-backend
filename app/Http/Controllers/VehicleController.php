@@ -86,15 +86,11 @@ class VehicleController extends Controller
         $vehicle->plate_number = $request->plate_number;
         $vehicle->body_type = $request->body_type;
         $vehicle->make = $request->make;
-        //$vehicle->series = $request->series;
         $vehicle->year_model = $request->year_model;
         $vehicle->color = $request->color;
         $vehicle->engine_number = $request->engine_number;
         $vehicle->chassis_number = $request->chassis_number;
-        //$vehicle->me_control_number = $request->me_control_number;
-        //$vehicle->classification = $request->classification;
         $vehicle->lto_cc_number = $request->lto_cc_number;
-        //$vehicle->mv_file_number = $request->mv_file_number;
         $vehicle->or_number = $request->or_number;
         $vehicle->cr_number = $request->cr_number;
         $vehicle->application_status = 'online';
