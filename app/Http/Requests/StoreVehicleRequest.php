@@ -27,17 +27,14 @@ class StoreVehicleRequest extends FormRequest
             'plate_number' => 'string|required|unique:vehicles',
             'body_type' => 'required',
             'make' => 'required',
-            'series' => 'required',
             'year_model' => 'required',
             'color' => 'required',
             'engine_number' => 'required',
             'chassis_number' => 'required',
-            'me_control_number' => 'required',
-            'classification' => 'required',
             'lto_cc_number' => 'required',
-            'mv_file_number' => 'required',
-            'mvrr_number' => 'required',
+            'or_number' => 'required',
             'cr_number' => 'required',
+            'requirements' => 'required',
         ];
     }
 }
