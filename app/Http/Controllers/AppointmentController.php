@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Appointment;
+use App\Vehicle;
 use Auth;
 
 class AppointmentController extends Controller
@@ -17,7 +18,7 @@ class AppointmentController extends Controller
 
     public function getForInspection()
     {
-        $myAppointment = Appointment::where('status', 'for inspection')->with('vehicle', 'user', 'clearance')->get();
+        $myAppointment = Vehicle::where('status', 'for inspection')->with('user', 'clearance')->get();
 
         return $myAppointment;
     }
