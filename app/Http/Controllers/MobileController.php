@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\Vehicle;
 use App\Appointment;
 use App\ClearanceDescription;
+use App\LtoRecord;
 use App\Events\ScanApplicationEvent;
 use Auth;
 use Carbon;
@@ -21,6 +22,16 @@ class MobileController extends Controller
             if ($search != '') {
                 $vehicles->orWhere('plate_number', 'like', '%' . $search . '%');
             }
+
+        return $vehicles->get();
+        
+    }
+
+     public function indexlto()
+    {
+        $search = Input::get('search');
+
+        $vehicles = LtoRecord::where('plate_number', 'like', '%' . $search . '%');
 
         return $vehicles->get();
         

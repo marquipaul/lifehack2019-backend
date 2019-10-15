@@ -21,6 +21,8 @@ Route::post('login', 'Auth\AuthController@login')->name('login');
 
 Route::get('/application/pdf/{id}', 'VehicleController@clearance_pdf');
 
+Route::get('/mobile/indexlto', 'MobileController@indexlto');
+
 Route::post('/account/store', 'AccountController@store');
 
     Route::group(['middleware' => 'auth:api'], function ($router) {
