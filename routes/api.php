@@ -40,4 +40,5 @@ Route::post('/account/store', 'AccountController@store');
         //Appointment
         Route::get('/appointment/index', 'AppointmentController@getAppointments');
         Route::put('/vehicle/step2/done/{clearance_id}/{vehicle_id}', 'VehicleController@paymentDone');
+        Route::put('/vehicle/inspection/hpg/done/{clearance_id}/{vehicle_id}', 'VehicleController@physicalInspectionHPG');
     });

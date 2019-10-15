@@ -14,5 +14,12 @@ class AppointmentController extends Controller
 
         return $myAppointment;
     }
+
+    public function getForInspection()
+    {
+        $myAppointment = Appointment::where('status', 'for inspection')->with('vehicle', 'user', 'clearance')->get();
+
+        return $myAppointment;
+    }
     
 }
