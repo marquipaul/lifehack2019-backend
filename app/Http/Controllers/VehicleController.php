@@ -232,25 +232,13 @@ class VehicleController extends Controller
     }
 
     //STEP 3
-    public function physicalInspectionHPG(Request $request, $vehicle_id)
+    public function physicalInspectionHPG(Request $request, $id)
     {   
 
-        $vehicle = Vehicle::find($vehicle_id);
+        $vehicle = Vehicle::find($id);
         $vehicle->hpg_inspection = 'done';
-        if ($vehicle->crime_lab_inspection == 'pending') {
-            $vehicle->status = 'for inspection';
-        } else {
-            $vehicle->status = 'for approval';
-        }
+        $vehicle->status = 'for final approval';
         $vehicle->save();
-
-        //$clearance = ClearanceDescription::find($clearance_id);
-        //if ($vehicle->crime_lab_inspection == 'pending') {
-        //    $clearance->status = 'for inspection';
-        //} else {
-        ////    $clearance->status = 'for approval';
-        //}
-        //$clearance->save();
 
         $myAppointment = Vehicle::where('status', 'for inspection')->with('user')->get();
 
