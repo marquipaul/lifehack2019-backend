@@ -246,19 +246,17 @@ class VehicleController extends Controller
     }
 
     //STEP 4
-    public function finalProccess(Request $request, $clearance_id, $vehicle_id)
+    public function finalProccess(Request $request, $id)
     {
-        $clearance = ClearanceDescription::find($clearance_id);
-        $clearance->land_bank_sbr_no = $request->land_bank_sbr_no;
-        $clearance->status = 'done';
-        $clearance->save();
 
-        $vehicle = Vehicle::find($vehicle_id);
+        $vehicle = Vehicle::find($id);
         $vehicle->status = $request->status;
         $vehicle->findings = $request->findings;
         $vehicle->save();
 
-        return $vehicle;
+        $myAppointment = Appointment::where('processed_by', Auth::user()->id)->with('vehicle', 'user', 'clearance')->get();
+
+        return $myAppointment; 
     }
 
 }
