@@ -10,7 +10,7 @@ class AppointmentController extends Controller
 {
     public function getAppointments()
     {
-        $myAppointment = Appointment::where('processed_by', Auth::user()->id)->get();
+        $myAppointment = Appointment::where('processed_by', Auth::user()->id)->with('vehicle', 'user', 'clearance')->get();
 
         return $myAppointment;
     }
