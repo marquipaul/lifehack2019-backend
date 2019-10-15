@@ -158,6 +158,9 @@ class VehicleController extends Controller
         $vehicle->status = 'for inspection';
         $vehicle->save();
 
+        $myAppointment = Appointment::where('processed_by', Auth::user()->id)->with('vehicle', 'user', 'clearance')->get();
+
+        return $myAppointment; 
     }
 
     //STEP 3
