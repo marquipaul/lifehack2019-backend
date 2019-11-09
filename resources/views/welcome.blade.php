@@ -67,7 +67,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    PNP ITMS AUTOMATION BACKEND
+                    BLOOD-DONATION BACKEND
                 </div>
             </div>
         </div>
