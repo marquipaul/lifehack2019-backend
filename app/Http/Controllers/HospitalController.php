@@ -16,7 +16,7 @@ class HospitalController extends Controller
 
     public function getHospitalInfo($id)
     {
-        return BloodRequest::where('hospital_id', $id)->with('donor', 'requestor')->get();
+        return BloodRequest::where('hospital_id', $id)->with('donor', 'requestor', 'hospital')->get();
     }
 
     public function store(HospitalRequest $request)
