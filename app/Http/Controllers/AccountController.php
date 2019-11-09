@@ -12,6 +12,11 @@ use App\Http\Requests\RegisterAccountRequest;
 
 class AccountController extends Controller
 {
+    public function accounts()
+    {
+        return User::with('locations')->get();
+    }
+
     public function store(RegisterAccountRequest $request)
     {
 

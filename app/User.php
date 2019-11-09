@@ -49,4 +49,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Event::class)->withPivot('approved')->withTimestamps();
     }
+
+    public function locations()
+    {
+        return $this->hasMany(UserLocation::class);
+    }
+
+    public function myRequests()
+    {
+        return $this->hasMany(BloodRequest::class, 'user_id');
+    }
+
+    public function myDonations()
+    {
+        return $this->hasMany(BloodRequest::class, 'donor_id');
+    }
 }
