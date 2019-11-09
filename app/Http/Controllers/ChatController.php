@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Chat;
+use App\Events\BroadcastChat;
 
 class ChatController extends Controller
 {
@@ -20,7 +21,9 @@ class ChatController extends Controller
         $chat->receiver_id = $request->receiver_id;
         $chat->chat = $request->chat;
         $chat->save();
-
+        
+        event(new BroadcastChat($chat));
+        
         return $chat;
     }
 }

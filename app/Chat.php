@@ -7,9 +7,9 @@ use App\Events\BroadcastChat;
 
 class Chat extends Model
 {
-    protected $dispatchesEvents = [
-        'created' => BroadcastChat::class
-    ];
+    // protected $dispatchesEvents = [
+    //     'created' => BroadcastChat::class
+    // ];
 
     protected $fillable = [
         'user_id', 'receiver_id', 'chat',
