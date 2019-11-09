@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BloodRequest;
 use App\User;
+use App\Friend;
 use Auth;
 
 class BloodRequestController extends Controller
 {
     public function index()
     {
-        return BloodRequest::with('donor', 'requestor')->get();
+        return BloodRequest::with('donor', 'requestor', 'hospital')->get();
     }
 
     public function myRequests()
@@ -51,6 +52,11 @@ class BloodRequestController extends Controller
         $bloodRequest = BloodRequest::find($id);
         $bloodRequest->user_approved = "1";
         $bloodRequest->save();
+
+        $friend = new Friend();
+        $friend->requestor_id = Auth::user()->id;
+        $friend->donor_id = $bloodRequest->donor_id;
+        $friend->save();
 
         return $bloodRequest;
     }

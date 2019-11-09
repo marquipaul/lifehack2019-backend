@@ -64,4 +64,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(BloodRequest::class, 'donor_id');
     }
+
+    public function friendsOfMine()
+    {
+        return $this->belongsToMany('App\User', 'friends', 'requestor_id', 'donor_id');
+    }
+    public function friendsOf()
+    {
+        return $this->belongsToMany('App\User', 'friends', 'donor_id', 'requestor_id');
+    }
+
+    public function friends()
+    {
+        return $this->friendsOfMine->merge($this->friendsOf);
+    }
 }

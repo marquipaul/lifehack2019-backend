@@ -28,6 +28,10 @@ Route::post('/register', 'AccountController@store');
         //Accounts / Users
         Route::get('/accounts', 'AccountController@accounts');
 
+        //Donor Chat
+        Route::get('/friends', 'ChatController@friends');
+        Route::post('/send-chat', 'ChatController@sendChat');
+
         //User Location
         Route::post('/location', 'UserLocationController@store');
 
@@ -42,6 +46,7 @@ Route::post('/register', 'AccountController@store');
 
         //Hospital
         Route::get('/hospital', 'HospitalController@index');
+        Route::get('/hospital/transactions/{id}', 'HospitalController@getHospitalInfo');
         Route::post('/hospital', 'HospitalController@store');
 
         //Event Module

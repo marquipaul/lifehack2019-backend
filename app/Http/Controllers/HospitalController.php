@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Hospital;
+use App\BloodRequest;
 use App\Http\Requests\HospitalRequest;
 
 class HospitalController extends Controller
 {
     public function index()
     {
-        return Hospital::all();
+        return Hospital::with('transactions')->get();
+    }
+
+    public function getHospitalInfo($id)
+    {
+        return BloodRequest::where('hospital_id', $id)->with('donor', 'requestor')->get();
     }
 
     public function store(HospitalRequest $request)
@@ -22,6 +28,6 @@ class HospitalController extends Controller
         $hospital->lat = $request->lat;
         $hospital->save();
     
-        return $hospital;
+        return Hospital::where('id', $hospital->id)->with('transactions')->first();
     }
 }

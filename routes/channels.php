@@ -18,3 +18,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('application.{appointmentId}', function ($user, $appointmentId) {
     return $user->id === Appointment::findOrNew($appointmentId)->user_id;
 });
+
+Broadcast::channel('Chat.{user_id}.{receiver_id}', function ($user, $user_id, $receiver_id) {
+    return $user->id ==  $receiver_id;
+});

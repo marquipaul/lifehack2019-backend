@@ -15,4 +15,9 @@ class BloodRequest extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
 }
