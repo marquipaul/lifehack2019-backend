@@ -19,31 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Auth\AuthController@login')->name('login');
 
-Route::get('/application/pdf/{id}', 'VehicleController@clearance_pdf');
-
-Route::get('/mobile/indexlto', 'MobileController@indexlto');
-
-Route::post('/account/store', 'AccountController@store');
+Route::post('/register', 'AccountController@store');
 
     Route::group(['middleware' => 'auth:api'], function ($router) {
         //Logout
         Route::post('/logout', 'Auth\AuthController@logout');
-
-        //Mobile
-        Route::get('/mobile/index', 'MobileController@index');
-        Route::get('/mobile/scan/vehicle/{code}', 'MobileController@scanVehicle');
-        Route::get('/mobile/scan/application/{code}', 'MobileController@scanOnlineApplication');
-
-        //Online
-        Route::get('/vehicle/owned', 'VehicleController@getVehicles');
-        Route::post('/vehicle/store/online', 'VehicleController@storeOnline');
-        Route::post('/vehicle/store/clearance/{vehicle_id}/{user_id}', 'VehicleController@storeClearance');
-
-        //Appointment
-        Route::get('/appointment/index', 'AppointmentController@getAppointments');
-        Route::get('/for-inspection/index', 'AppointmentController@getForInspection');
-        Route::put('/vehicle/step2/done/{clearance_id}/{vehicle_id}', 'VehicleController@paymentDone');
-        Route::put('/vehicle/inspection/hpg/done/{id}', 'VehicleController@physicalInspectionHPG');
-
-        Route::put('/vehicle/final/done/{id}', 'VehicleController@finalProccess');
     });

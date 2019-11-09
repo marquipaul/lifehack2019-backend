@@ -13,26 +13,29 @@ class AccountController extends Controller
 {
     public function store(RegisterAccountRequest $request)
     {
-        $date = Carbon\Carbon::now()->toDateString();
-        $time = Carbon\Carbon::now()->toTimeString();
-        $random = Str::random(10);
-        $code = "$request->first_name-$request->tin_number-$random-$date-$time";
+
 
         $user = new User();
-        $user->qr_code = $code;
+        $user->qr_code = "";
         $user->email = $request->email;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->middle_name = $request->middle_name;
+        $user->name = $request->name;
+        $user->blood_type = $request->blood_type;
         $user->gender = $request->gender;
-        $user->user_type = 'applicant';
+        $user->user_type = 'donor';
         $user->mobile_number = $request->mobile_number;
         $user->birthday = $request->birthday;
-        $user->address = $request->address;
-        $user->tin_number = $request->tin_number;
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return $user;
+        $date = Carbon\Carbon::now()->toDateString();
+        $time = Carbon\Carbon::now()->toTimeString();
+        $random = Str::random(10);
+        $code = "$user->id-$random-$date-$time";
+
+        $update = User::find($user->id);
+        $update->qr_code = $code;
+        $update->save();
+        
+        return $update;
     }
 }

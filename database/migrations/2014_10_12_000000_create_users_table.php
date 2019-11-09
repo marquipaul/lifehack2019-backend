@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('blood_type');
             $table->date('birthday');
-            $table->mediumText('address');
             $table->enum('gender', ['male', 'female']);
             $table->enum('user_type', ['donor', 'admin']);
             $table->string('email')->unique();

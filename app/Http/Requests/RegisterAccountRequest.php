@@ -25,12 +25,8 @@ class RegisterAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'string|required', 
-            'last_name' => 'string|required', 
-            'middle_name' => 'string|required', 
-            'birthday' => 'string|required', 
-            'tin_number' => 'string|required',
-            'address' => 'string|required',
+            'name' => 'string|required', 
+            'birthday' => 'string|required',
             'gender' => 'string|required',
             'email' => 'string|required|unique:users|email',
             'mobile_number' => 'required|unique:users|numeric',
