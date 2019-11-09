@@ -15,6 +15,11 @@ class BloodRequestController extends Controller
         return BloodRequest::with('donor', 'requestor', 'hospital')->get();
     }
 
+    public function getPendingRequests($id)
+    {
+        return BloodRequest::where('hospital_id', $id)->where('donor_id', null)->with('requestor', 'hospital')->get();
+    }
+
     public function myRequests()
     {
         return BloodRequest::where('user_id', Auth::user()->id)->with('donor')->get();

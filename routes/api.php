@@ -21,6 +21,7 @@ Route::post('login', 'Auth\AuthController@login')->name('login');
 
 Route::post('/register', 'AccountController@store');
 
+Route::get('/pending-requests/{id}', 'BloodRequestController@getPendingRequests');
     Route::group(['middleware' => 'auth:api'], function ($router) {
         //Logout
         Route::post('/logout', 'Auth\AuthController@logout');
@@ -36,6 +37,7 @@ Route::post('/register', 'AccountController@store');
         Route::post('/location', 'UserLocationController@store');
 
         //Blood Request 
+        //Route::get('/pending-requests', 'BloodRequestController@getPendingRequests');
         Route::get('/all-requests', 'BloodRequestController@index');
         Route::get('/my-requests', 'BloodRequestController@myRequests');
         Route::get('/my-donations', 'BloodRequestController@myDonations');
