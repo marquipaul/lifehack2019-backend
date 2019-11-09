@@ -33,7 +33,7 @@ class BroadcastChat implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        //return new PrivateChannel('Chat.' . $this->chat->user_id . '.' . $this->chat->receiver_id);
-        return new Channel('realtime-chat');
+        return new PrivateChannel('Chat.' . $this->chat->user_id . '.' . $this->chat->receiver_id);
+        //return new Channel('realtime-chat');
     }
 }
