@@ -35,6 +35,7 @@ class BloodRequestController extends Controller
     {
         $bloodRequest = new BloodRequest;
         $bloodRequest->hospital_id = $request->hospital_id;
+        $bloodRequest->blood_type = $request->blood_type;
         $bloodRequest->user_id = Auth::user()->id;
         $bloodRequest->save();
 

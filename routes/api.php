@@ -30,6 +30,7 @@ Route::get('/pending-requests/{id}', 'BloodRequestController@getPendingRequests'
         Route::get('/accounts', 'AccountController@accounts');
 
         //Donor Chat
+        Route::get('/get-chats/{id}', 'ChatController@getChats');
         Route::get('/friends', 'ChatController@friends');
         Route::post('/send-chat', 'ChatController@sendChat');
 
