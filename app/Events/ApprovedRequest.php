@@ -9,21 +9,20 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-//use App\Chat;
 
 class ApprovedRequest implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $bloodRequest;
+    public $value;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($bloodRequest)
+    public function __construct($value)
     {
-        $this->bloodRequest = $bloodRequest;
+        $this->value = $value;
     }
 
     /**
@@ -33,7 +32,6 @@ class ApprovedRequest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('blood-request.' . $this->bloodRequest->user_id . '.' . $this->chat->donor_id);
-        //return new Channel('realtime-chat');
+        return new Channel('blood-request.' . $this->value->user_id . '.' . $this->value->donor_id);
     }
 }
