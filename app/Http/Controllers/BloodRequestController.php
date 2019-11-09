@@ -7,6 +7,7 @@ use App\BloodRequest;
 use App\User;
 use App\Friend;
 use Auth;
+use App\Events\ApprovedRequest;
 
 class BloodRequestController extends Controller
 {
@@ -54,6 +55,9 @@ class BloodRequestController extends Controller
             $friend->requestor_id = Auth::user()->id;
             $friend->donor_id = $bloodRequest->donor_id;
             $friend->save();
+
+            $result = BloodRequest::where('id', $bloodRequest->id)->with('donor', 'requestor', 'hospital')->first();
+            event(new ApprovedRequest($result));
         }
 
         return $bloodRequest;
@@ -70,6 +74,9 @@ class BloodRequestController extends Controller
             $friend->requestor_id = Auth::user()->id;
             $friend->donor_id = $bloodRequest->donor_id;
             $friend->save();
+
+            $result = BloodRequest::where('id', $bloodRequest->id)->with('donor', 'requestor', 'hospital')->first();
+            event(new ApprovedRequest($result));
         }
 
         return $bloodRequest;
