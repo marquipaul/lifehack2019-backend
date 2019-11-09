@@ -18,17 +18,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'qr_code',
-        'first_name', 
-        'last_name', 
-        'middle_name', 
+        'name',
         'birthday', 
-        'tin_number',
-        'address',
         'gender',
         'user_type',
         'email',
         'mobile_number',
-        'avatar',
         'password'
     ];
 

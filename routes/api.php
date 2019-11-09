@@ -24,4 +24,7 @@ Route::post('/register', 'AccountController@store');
     Route::group(['middleware' => 'auth:api'], function ($router) {
         //Logout
         Route::post('/logout', 'Auth\AuthController@logout');
+
+        //Event Module
+        Route::post('/event', 'EventController@store');
     });
