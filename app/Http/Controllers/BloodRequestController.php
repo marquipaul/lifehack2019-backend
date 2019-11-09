@@ -49,6 +49,13 @@ class BloodRequestController extends Controller
         $bloodRequest->donor_id = Auth::user()->id;
         $bloodRequest->save();
 
+        if ($bloodRequest->donor_approved == '1'&&$bloodRequest->user_approved == '1') {
+            $friend = new Friend();
+            $friend->requestor_id = Auth::user()->id;
+            $friend->donor_id = $bloodRequest->donor_id;
+            $friend->save();
+        }
+
         return $bloodRequest;
     }
 
@@ -58,10 +65,12 @@ class BloodRequestController extends Controller
         $bloodRequest->user_approved = "1";
         $bloodRequest->save();
 
-        $friend = new Friend();
-        $friend->requestor_id = Auth::user()->id;
-        $friend->donor_id = $bloodRequest->donor_id;
-        $friend->save();
+        if ($bloodRequest->donor_approved == '1'&&$bloodRequest->user_approved == '1') {
+            $friend = new Friend();
+            $friend->requestor_id = Auth::user()->id;
+            $friend->donor_id = $bloodRequest->donor_id;
+            $friend->save();
+        }
 
         return $bloodRequest;
     }
