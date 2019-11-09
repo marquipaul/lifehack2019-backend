@@ -8,6 +8,10 @@ use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
+    public function index()
+    {
+        return Event::all();
+    }
     public function store(EventRequest $request)
     {
         $event = new Event;

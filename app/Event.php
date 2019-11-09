@@ -14,4 +14,9 @@ class Event extends Model
         'long',
         'lat'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('approved')->withTimestamps();
+    }
 }

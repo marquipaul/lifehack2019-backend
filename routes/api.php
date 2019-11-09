@@ -26,5 +26,10 @@ Route::post('/register', 'AccountController@store');
         Route::post('/logout', 'Auth\AuthController@logout');
 
         //Event Module
+        Route::get('/event', 'EventController@index');
         Route::post('/event', 'EventController@store');
+
+        //Donor Routes
+        Route::post('/join', 'DonorController@join');
+        Route::post('/leave', 'DonorController@leave');
     });
