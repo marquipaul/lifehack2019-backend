@@ -20,12 +20,3 @@ Laravel 5.8 with Laravel Passport
 11. Save .env file
 12. Then run (php artisan config:cache)
 
-This Project has a default migrations, controller and Model with one to many relationship for
-
--User
-
--Category
-
--Brand
-
--Produc
