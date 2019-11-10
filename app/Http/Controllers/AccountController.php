@@ -15,7 +15,7 @@ class AccountController extends Controller
 {
     public function accounts()
     {
-        return User::with('locations')->get();
+        return User::with('joinedevents', 'myRequests', 'myDonations')->get();
     }
 
 
